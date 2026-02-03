@@ -246,30 +246,30 @@ export function ChatPanel({
     }
 
     return (
-        <div className="flex flex-col h-full relative" style={{ backgroundColor: colors.background }}>
+        <div className="flex flex-col h-full relative overflow-hidden" style={{ backgroundColor: colors.background }}>
             {/* Header */}
             <div
-                className="flex items-center justify-between px-6 py-4 border-b"
+                className="flex items-center justify-between px-4 md:px-6 py-3 md:py-4 border-b shrink-0"
                 style={{ borderColor: `${colors.accent2}20`, backgroundColor: `${colors.surface}80`, backdropFilter: 'blur(10px)' }}
             >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 md:gap-4">
                     <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center font-serif text-xl border shadow-sm"
+                        className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center font-serif text-lg md:text-xl border shadow-sm"
                         style={{ backgroundColor: colors.surface, color: colors.accent2, borderColor: `${colors.accent2}40` }}
                     >
                         ش
                     </div>
                     <div className="flex flex-col">
-                        <span className="font-serif text-lg font-bold" style={{ color: colors.text }}>شائستہ</span>
-                        <span className="text-[10px] uppercase tracking-widest" style={{ color: colors.textMuted }}>Premium Urdu AI</span>
+                        <span className="font-serif text-base md:text-lg font-bold leading-tight" style={{ color: colors.text }}>شائستہ</span>
+                        <span className="text-[8px] md:text-[10px] uppercase tracking-widest" style={{ color: colors.textMuted }}>Premium AI</span>
                     </div>
                 </div>
 
                 {/* Model Selector */}
-                <div className="flex items-center gap-2 bg-[#141B2D]/50 p-1 rounded-xl border border-[#A68A56]/20">
+                <div className="flex items-center gap-1 bg-[#141B2D]/50 p-1 rounded-lg border border-[#A68A56]/20">
                     <button
                         onClick={() => { setProvider('glm'); setModel('glm-4.7-flash') }}
-                        className={`px-4 py-2 rounded-lg text-xs font-serif transition-all duration-300 ${provider === 'glm' ? 'shadow-sm' : ''
+                        className={`px-2 md:px-4 py-1.5 md:py-2 rounded-md md:rounded-lg text-[10px] md:text-xs font-serif transition-all duration-300 ${provider === 'glm' ? 'shadow-sm' : ''
                             }`}
                         style={{
                             backgroundColor: provider === 'glm' ? colors.accent2 : 'transparent',
@@ -280,14 +280,14 @@ export function ChatPanel({
                     </button>
                     <button
                         onClick={() => { setProvider('openrouter'); setModel('google/gemini-2.0-flash-exp:free') }}
-                        className={`px-4 py-2 rounded-lg text-xs font-serif transition-all duration-300 relative ${provider === 'openrouter' ? 'shadow-sm' : ''
+                        className={`px-2 md:px-4 py-1.5 md:py-2 rounded-md md:rounded-lg text-[10px] md:text-xs font-serif transition-all duration-300 relative ${provider === 'openrouter' ? 'shadow-sm' : ''
                             }`}
                         style={{
                             backgroundColor: provider === 'openrouter' ? '#9F7AEA' : 'transparent',
                             color: provider === 'openrouter' ? colors.background : colors.textMuted,
                         }}
                     >
-                        شائستہ بیٹا
+                        <span className="hidden xs:inline">شائستہ </span>Beta
                         {!provider.includes('openrouter') && <span className="absolute -top-1 -right-1 flex h-2 w-2"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span><span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span></span>}
                     </button>
                 </div>
@@ -297,24 +297,24 @@ export function ChatPanel({
             <div className="flex-1 overflow-y-auto scroll-smooth">
                 {messages.length === 0 ? (
                     // Empty State
-                    <div className="h-full flex flex-col items-center justify-center text-center px-4 space-y-8">
+                    <div className="min-h-full flex flex-col items-center justify-center text-center px-4 py-12 space-y-6 md:space-y-8">
                         <div className="relative">
                             <div
-                                className="w-24 h-24 rounded-3xl flex items-center justify-center font-serif text-5xl border-2 rotate-3 hover:rotate-0 transition-transform duration-500 cursor-default"
-                                style={{ backgroundColor: colors.surface, color: colors.accent2, borderColor: `${colors.accent2}60`, boxShadow: `0 20px 40px -10px ${colors.accent2}20` }}
+                                className="w-16 h-16 md:w-24 md:h-24 rounded-2xl md:rounded-3xl flex items-center justify-center font-serif text-3xl md:text-5xl border-2 rotate-3 hover:rotate-0 transition-transform duration-500 cursor-default"
+                                style={{ backgroundColor: colors.surface, color: colors.accent2, borderColor: `${colors.accent2}60`, boxShadow: `0 10px 20px -5px ${colors.accent2}20` }}
                             >
                                 ش
                             </div>
                         </div>
-                        <div className="space-y-4">
-                            <h1 className="text-4xl font-serif font-bold tracking-tight" style={{ color: colors.text }}>
+                        <div className="space-y-3 md:space-y-4">
+                            <h1 className="text-2xl md:text-4xl font-serif font-bold tracking-tight px-4" style={{ color: colors.text }}>
                                 آداب! میں آپ کی کیا مدد کر سکتی ہوں؟
                             </h1>
-                            <p className="text-lg max-w-lg mx-auto font-light leading-relaxed" style={{ color: colors.textMuted }}>
+                            <p className="text-sm md:text-lg max-w-lg mx-auto font-light leading-relaxed px-6" style={{ color: colors.textMuted }}>
                                 شائستہ اردو زبان کا ایک نفیس اور ذہین ماڈل ہے، جو آپ کے ہر سوال کا جواب انتہائی شائستگی سے دینے کی صلاحیت رکھتا ہے۔
                             </p>
                         </div>
-                        <div className="grid grid-cols-2 gap-4 max-w-xl w-full pt-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 max-w-xl w-full pt-4 md:pt-8 px-4">
                             {[
                                 "ایک نظم لکھیں",
                                 "تاریخِ اردو بتائیں",
@@ -324,7 +324,7 @@ export function ChatPanel({
                                 <button
                                     key={suggestion}
                                     onClick={() => setInput(suggestion)}
-                                    className="p-4 rounded-xl border text-sm font-serif transition-all text-right hover:scale-[1.02]"
+                                    className="p-3 md:p-4 rounded-xl border text-xs md:text-sm font-serif transition-all text-right hover:scale-[1.02]"
                                     style={{ backgroundColor: `${colors.surface}40`, borderColor: `${colors.accent2}20`, color: colors.text }}
                                 >
                                     {suggestion}
@@ -334,7 +334,7 @@ export function ChatPanel({
                     </div>
                 ) : (
                     // Messages - ChatGPT Style
-                    <div className="pb-40 pt-4">
+                    <div className="pb-32 md:pb-40 pt-4">
                         {messages.map((message) => (
                             <div
                                 key={message.id}
@@ -343,11 +343,11 @@ export function ChatPanel({
                                 }}
                                 className="group transition-colors duration-300"
                             >
-                                <div className="max-w-3xl mx-auto px-4 py-8">
-                                    <div className="flex gap-6 items-start">
+                                <div className="max-w-3xl mx-auto px-4 py-6 md:py-8">
+                                    <div className="flex gap-4 md:gap-6 items-start">
                                         {/* Avatar */}
                                         <div
-                                            className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 text-base shadow-lg border transition-transform group-hover:scale-110"
+                                            className="w-8 h-8 md:w-9 md:h-9 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0 text-sm md:text-base shadow-lg border transition-transform group-hover:scale-110"
                                             style={{
                                                 backgroundColor: message.role === 'assistant' ? colors.surface : colors.accent1,
                                                 color: message.role === 'assistant' ? colors.accent2 : colors.text,
@@ -355,25 +355,25 @@ export function ChatPanel({
                                             }}
                                         >
                                             {message.role === 'assistant' ? 'ش' : (
-                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                                 </svg>
                                             )}
                                         </div>
 
                                         {/* Content */}
-                                        <div className="flex-1 min-w-0 pt-1">
+                                        <div className="flex-1 min-w-0 pt-0 md:pt-1">
                                             <div
-                                                className="text-xs font-serif uppercase tracking-widest mb-3 opacity-60"
+                                                className="text-[10px] font-serif uppercase tracking-widest mb-2 md:mb-3 opacity-60"
                                                 style={{ color: colors.textMuted }}
                                             >
                                                 {message.role === 'assistant' ? 'شائستہ' : 'آپ'}
                                             </div>
                                             <div
-                                                className="text-lg leading-[1.8] font-light"
+                                                className="text-base md:text-lg leading-[1.7] md:leading-[1.8] font-light"
                                                 style={{ color: colors.text, direction: 'rtl', textAlign: 'right' }}
                                             >
-                                                <p className="whitespace-pre-wrap m-0 font-serif">{message.content}</p>
+                                                <div className="whitespace-pre-wrap m-0 font-serif overflow-hidden break-words">{message.content}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -386,19 +386,19 @@ export function ChatPanel({
                         {isLoading && (
                             <div style={{ backgroundColor: `${colors.surface}30` }}>
                                 <div className="max-w-3xl mx-auto px-4 py-8">
-                                    <div className="flex gap-6 items-start">
+                                    <div className="flex gap-4 md:gap-6 items-start">
                                         <div
-                                            className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 text-base animate-pulse border"
+                                            className="w-8 h-8 md:w-9 md:h-9 rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0 text-sm md:text-base animate-pulse border"
                                             style={{ backgroundColor: colors.surface, color: colors.accent2, borderColor: `${colors.accent2}40` }}
                                         >
                                             ش
                                         </div>
-                                        <div className="flex-1 pt-1">
-                                            <div className="text-xs font-serif uppercase tracking-widest mb-4 opacity-60" style={{ color: colors.textMuted }}>شائستہ</div>
-                                            <div className="flex gap-2">
-                                                <span className="w-2.5 h-2.5 rounded-full animate-bounce" style={{ backgroundColor: colors.accent2, animationDelay: '0ms' }}></span>
-                                                <span className="w-2.5 h-2.5 rounded-full animate-bounce" style={{ backgroundColor: colors.accent2, animationDelay: '150ms' }}></span>
-                                                <span className="w-2.5 h-2.5 rounded-full animate-bounce" style={{ backgroundColor: colors.accent2, animationDelay: '300ms' }}></span>
+                                        <div className="flex-1 pt-0 md:pt-1">
+                                            <div className="text-[10px] font-serif uppercase tracking-widest mb-3 md:mb-4 opacity-60" style={{ color: colors.textMuted }}>شائستہ</div>
+                                            <div className="flex gap-1.5 md:gap-2">
+                                                <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full animate-bounce" style={{ backgroundColor: colors.accent2, animationDelay: '0ms' }}></span>
+                                                <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full animate-bounce" style={{ backgroundColor: colors.accent2, animationDelay: '150ms' }}></span>
+                                                <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full animate-bounce" style={{ backgroundColor: colors.accent2, animationDelay: '300ms' }}></span>
                                             </div>
                                         </div>
                                     </div>
@@ -413,16 +413,16 @@ export function ChatPanel({
 
             {/* Input Area - ChatGPT Style (Centered, floating) */}
             <div
-                className="absolute bottom-0 left-0 right-0 px-4 pb-8"
+                className="absolute bottom-0 left-0 right-0 px-2 md:px-4 pb-4 md:pb-8 shrink-0"
                 style={{
                     background: `linear-gradient(transparent, ${colors.background} 40%)`,
-                    paddingTop: '4rem',
+                    paddingTop: '2rem md:4rem',
                 }}
             >
                 <div className="max-w-3xl mx-auto relative group">
                     <form onSubmit={handleSubmit} className="relative">
                         <div
-                            className="flex items-end gap-3 p-4 rounded-2xl shadow-2xl transition-all duration-300 focus-within:ring-1"
+                            className="flex items-end gap-2 md:gap-3 p-3 md:p-4 rounded-xl md:rounded-2xl shadow-2xl transition-all duration-300 focus-within:ring-1"
                             style={{
                                 backgroundColor: colors.surface,
                                 border: `1px solid ${colors.accent2}60`,
@@ -438,24 +438,24 @@ export function ChatPanel({
                                 disabled={isLoading}
                                 rows={1}
                                 dir="rtl"
-                                className="flex-1 bg-transparent resize-none outline-none text-base py-2 px-3 min-h-[28px] max-h-[200px] font-serif"
+                                className="flex-1 bg-transparent resize-none outline-none text-sm md:text-base py-1.5 md:py-2 px-2 md:px-3 min-h-[24px] md:min-h-[28px] max-h-[150px] md:max-h-[200px] font-serif"
                                 style={{ color: colors.text }}
                             />
                             <button
                                 type="submit"
                                 disabled={isLoading || !input.trim()}
-                                className="p-3 rounded-xl transition-all duration-300 disabled:opacity-20 hover:scale-105 active:scale-95 flex items-center justify-center"
+                                className="p-2 md:p-3 rounded-lg md:rounded-xl transition-all duration-300 disabled:opacity-20 hover:scale-105 active:scale-95 flex items-center justify-center shrink-0"
                                 style={{
                                     backgroundColor: input.trim() ? colors.accent2 : `${colors.accent2}20`,
                                     color: colors.background,
                                 }}
                             >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                                 </svg>
                             </button>
                         </div>
-                        <p className="text-center text-[10px] mt-3 uppercase tracking-[0.2em] font-medium" style={{ color: colors.textMuted }}>
+                        <p className="text-center text-[8px] md:text-[10px] mt-2 md:mt-3 uppercase tracking-[0.2em] font-medium" style={{ color: colors.textMuted }}>
                             Shaista reflects polished intelligence. <span className="opacity-50">Confirm vital facts.</span>
                         </p>
                     </form>

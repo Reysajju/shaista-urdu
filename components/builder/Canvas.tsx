@@ -72,18 +72,18 @@ export function Canvas() {
             onDragEnd={handleDragEnd}
         >
             <div
-                className="canvas-container relative w-full h-full min-h-[600px] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden"
+                className="canvas-container relative w-full h-full min-h-[400px] md:min-h-[600px] bg-[#141B2D] overflow-hidden rounded-2xl md:rounded-3xl"
                 onClick={handleCanvasClick}
             >
                 {/* Grid pattern */}
                 <div
-                    className="absolute inset-0 opacity-20"
+                    className="absolute inset-0 opacity-[0.05]"
                     style={{
                         backgroundImage: `
-              linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
+              linear-gradient(to right, #A68A56 1px, transparent 1px),
+              linear-gradient(to bottom, #A68A56 1px, transparent 1px)
             `,
-                        backgroundSize: '20px 20px',
+                        backgroundSize: '32px 32px',
                     }}
                 />
 
@@ -102,11 +102,11 @@ export function Canvas() {
 
                 {/* Empty state */}
                 {nodes.length === 0 && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center space-y-4">
-                            <div className="text-6xl opacity-20">🎨</div>
-                            <p className="text-slate-400 text-lg">
-                                Start building by adding components from the sidebar
+                    <div className="absolute inset-0 flex items-center justify-center p-8">
+                        <div className="text-center space-y-4 md:space-y-6 max-w-xs md:max-w-md">
+                            <div className="text-4xl md:text-6xl opacity-20 filter grayscale">🏛️</div>
+                            <p className="text-[#8A8680] text-sm md:text-lg font-serif font-light leading-relaxed">
+                                Curate your masterpiece by adding architectural elements from the workshop.
                             </p>
                         </div>
                     </div>

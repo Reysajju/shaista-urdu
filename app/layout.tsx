@@ -18,9 +18,53 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Shaista Model | Premium AI Experience",
-  description: "A refined and polite AI assistant for your professional needs.",
-  keywords: ["AI", "Shaista", "Urdu", "Assistant", "Premium", "Old Money"],
+  title: "Shaista Model | Premium AI Executive Assistant",
+  description: "Experience Shaista: A refined, Urdu-native AI model built for polished intelligence, scholarly research, and professional consulting.",
+  keywords: ["AI", "Shaista", "Urdu LLM", "Artifical Intelligence", "Premium AI", "Old Money Aesthetic", "Scholarly AI"],
+  authors: [{ name: "Shaista Intelligence" }],
+  openGraph: {
+    title: "Shaista Model | Polished Urdu Intelligence",
+    description: "The most refined Urdu-native AI assistant designed for the study and the boardroom.",
+    url: "https://shaista.ai",
+    siteName: "Shaista",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Shaista AI - Polished Intelligence",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shaista Model | Premium AI",
+    description: "Refined, Urdu-native AI for scholarly and professional discourse.",
+    images: ["/og-image.png"],
+  },
+  alternates: {
+    canonical: "https://shaista.ai",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Shaista AI",
+  "operatingSystem": "Web",
+  "applicationCategory": "AI Assistant",
+  "description": "A refined and polite Urdu-native AI assistant for scholarly research and professional needs.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Shaista Intelligence"
+  }
 };
 
 export default async function RootLayout({
@@ -38,6 +82,10 @@ export default async function RootLayout({
           async
           src="https://media.ethicalads.io/media/client/ethicalads.min.js"
           strategy="afterInteractive"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body
